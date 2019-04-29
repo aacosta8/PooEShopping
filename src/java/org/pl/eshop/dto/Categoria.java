@@ -12,8 +12,8 @@ package org.pl.eshop.dto;
 public class Categoria {
 
     private Integer id;
-    private String nombre;
-    private String descripcion;
+    private String nombre = "";
+    private String descripcion = "";
 
     public Categoria() {
     }
@@ -28,8 +28,12 @@ public class Categoria {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer id) throws Exception {
+        if(id != null && id > 0){
+            this.id = id;
+        }else{
+            throw new IllegalArgumentException();
+        }
     }
 
     public String getNombre() {
@@ -37,7 +41,11 @@ public class Categoria {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        if(nombre != null && !nombre.isEmpty() && nombre.length() >= 3){
+            this.nombre = nombre;
+        }else{
+            throw new IllegalArgumentException();
+        }
     }
 
     public String getDescripcion() {
